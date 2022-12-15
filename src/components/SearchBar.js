@@ -2,19 +2,19 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./SearchBar.css";
 
-const SearchBar = ({ value, onChange, onClick }) => {
+const SearchBar = ({ value, onChange }) => {
   const navigate = useNavigate();
 
-  const handleCloseSearch = () => {
+  const goBack = () => {
     navigate("/");
   };
 
   return (
     <div className="search-bar">
-      <button className="close-search" onClick={handleCloseSearch}>
+      <button className="close-search" onClick={goBack}>
         Close
       </button>
-      <div className="search-books-input-wrapper">
+      <div className="search-wrapper">
         <input
           type="text"
           placeholder="Search by title or author"

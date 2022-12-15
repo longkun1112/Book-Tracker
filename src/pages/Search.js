@@ -7,29 +7,29 @@ import { toast } from "react-toastify";
 import { ThreeDots } from "react-loader-spinner";
 
 const Search = () => {
-  const [booksList, setBooksList] = useState([]);
-  const [query, setQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [list, setList] = useState([]);
+  const [searchRes, setSearchRes] = useState([]);
+  const [keyword, setKeyword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSearchSubmit = async (query) => {
+  const handleSearchSubmit = async (keyword) => {
     setLoading(true);
     setError("");
-    const res = await searchBooks(query);
+    const res = await searchBooks(keyword);
 
     if (res.error) {
       setLoading(false);
-      setError("Oops! Search not found");
-      setSearchResults(res.items);
+      setError("Search not found");
+      setSearchRes(res.items);
     } else {
       setLoading(false);
-      setSearchResults(res);
+      setSearchRes(res);
     }
   };
 
   const findCurrentShelf = (bookId) => {
-    const book = booksList.find((book) => book.id === bookId);
+    const book = list.find((book) => book.id === bookId);
 
     if (book) {
       return book.shelf;
@@ -39,64 +39,66 @@ const Search = () => {
   };
 
   const handleInputSearch = (e) => {
-    setQuery(e.target.value);
+    setKeyword(e.target.value);
   };
 
-  const clearResults = () => setSearchResults([]);
+  const clearRes = () => setSearchRes([]);
 
-  const onMoveShelf = async (book, shelf) => {
+  const moveShelf = async (book, shelf) => {
     try {
       await updateBook(book, shelf);
 
       toast.success("Moved successfully");
     } catch (e) {
       console.log(e);
+      toast.error("Moved fail");
     }
   };
 
-  const renderBooks = searchResults?.map((book) => {
+  const renderBooks = searchRes?.map((book) => {
     return (
       <Book
         key={book.id}
         book={book}
-        onMoveShelf={onMoveShelf}
+        moveShelf={moveShelf}
         currentShelf={findCurrentShelf(book.id)}
       />
     );
   });
 
   useEffect(() => {
-    if (query !== "") {
-      handleSearchSubmit(query);
+    if (keyword !== "") {
+      handleSearchSubmit(keyword);
     } else {
-      clearResults();
+      clearRes();
     }
-  }, [query]);
+  }, [keyword]);
 
   useEffect(() => {
     getAllBooks().then((res) => {
-      setBooksList(res);
+      setList(res);
     });
   }, []);
 
   return (
     <div className="search-books">
-      <SearchBar value={query} onChange={handleInputSearch} />
+      <SearchBar value={keyword} onChange={handleInputSearch} />
       <div className="search-results">
         <div className="grid">
-          {loading && 
-          <div className="spinner">
-            <ThreeDots
-              height="80"
-              width="80"
-              radius="9"
-              color="green"
-              ariaLabel="loading"
-              wrapperStyle
-              wrapperClass
-            />
-          </div>}
-          {!loading && searchResults.length !== 0 && renderBooks}
+          {loading && (
+            <div className="spinner">
+              <ThreeDots
+                height="80"
+                width="80"
+                radius="9"
+                color="green"
+                ariaLabel="loading"
+                wrapperStyle
+                wrapperClass
+              />
+            </div>
+          )}
+          {!loading && searchRes.length !== 0 && renderBooks}
           {error && <div>{error}</div>}
         </div>
       </div>

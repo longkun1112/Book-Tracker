@@ -1,10 +1,10 @@
 .search-bar input {
-  width: 100%;
   padding: 15px 10px;
   font-size: 1.25em;
-  border: none;
+  width: 100%;
   outline: none;
   background-color: transparent;
+  border: none;
 }
 
 .search-results {
@@ -12,10 +12,11 @@
 }
 
 .grid {
-  list-style-type: none;
   padding: 0;
-  margin: 0;
+  list-style-type: none;
   display: flex;
-  justify-content: center;
+  margin: 0;
   flex-wrap: wrap;
+  justify-content: center;
 }
+

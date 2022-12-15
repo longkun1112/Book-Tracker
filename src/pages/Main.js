@@ -11,7 +11,7 @@ const Main = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  const bookShelves = [
+  const Shelves = [
     {
       label: "Currently Reading",
       key: "currentlyReading",
@@ -39,7 +39,7 @@ const Main = () => {
     });
   }, []);
 
-  const onMoveShelf = async (book, shelf) => {
+  const moveShelf = async (book, shelf) => {
     setLoading(true);
     
     await updateBook(book, shelf);
@@ -72,7 +72,7 @@ const Main = () => {
           </div>
           <div className="content">
             <div>
-              {bookShelves.map((bookShelf) => (
+              {Shelves.map((bookShelf) => (
                 <div key={bookShelf.key} className="bookshelf">
                   <h2 className="bookshelf-title">{bookShelf.label}</h2>
                   <ol className="grid">
@@ -82,7 +82,7 @@ const Main = () => {
                         <Book
                           key={book.id}
                           book={book}
-                          onMoveShelf={onMoveShelf}
+                          moveShelf={moveShelf}
                         />
                       ))}
                   </ol>
@@ -91,7 +91,7 @@ const Main = () => {
             </div>
           </div>
           <div className="open-search">
-            <button onClick={handleOpenSearch}>Add a book</button>
+            <button onClick={handleOpenSearch}></button>
           </div>
         </div>
       )}

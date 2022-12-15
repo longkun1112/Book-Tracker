@@ -21,7 +21,7 @@ const Detail = () => {
 
   const navigate = useNavigate();
 
-  const handleCloseSearch = () => {
+  const goBack = () => {
     navigate("/");
   };
 
@@ -43,7 +43,7 @@ const Detail = () => {
       {!loading && (
         <div className="book-container">
           <div className="books-bar">
-            <button className="close-search" onClick={handleCloseSearch}>
+            <button className="close-search" onClick={goBack}>
               Close
             </button>
           </div>

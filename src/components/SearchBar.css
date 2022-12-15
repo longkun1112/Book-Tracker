@@ -1,10 +1,10 @@
 .search-bar {
-  position: fixed;
   width: 100%;
-  top: 0;
+  position: fixed;
   left: 0;
-  z-index: 5;
+  top: 0;
   display: flex;
+  z-index: 5;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 0 6px rgba(0, 0, 0, 0.23);
   background: linear-gradient(
     106.37deg,
@@ -14,21 +14,24 @@
   );
 }
 
-.close-search {
-  display: block;
-  top: 20px;
-  left: 15px;
-  width: 50px;
-  height: 53px;
-  background-image: url("./arrow-back.svg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 28px;
-  font-size: 0;
-  border: none;
-  outline: none;
-}
-
-.search-books-input-wrapper {
+.search-wrapper {
   flex: 1;
 }
+
+.close-search {
+  top: 20px;
+  display: block;
+  width: 50px;
+  left: 15px;
+  background-image: url("./arrow-back.svg");
+  background-position: center;
+  height: 53px;
+  background-size: 28px;
+  font-size: 0;
+  background-repeat: no-repeat;
+  outline: none;
+  border: none;
+
+}
+
+
