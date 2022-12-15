@@ -11,9 +11,7 @@ const SearchBar = ({ value, onChange }) => {
 
   return (
     <div className="search-bar">
-      <button className="close-search" onClick={goBack}>
-        Close
-      </button>
+      <button className="close-search" onClick={goBack}></button>
       <div className="search-wrapper">
         <input
           type="text"
