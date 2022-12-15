@@ -1,0 +1,21 @@
+.search-bar input {
+  width: 100%;
+  padding: 15px 10px;
+  font-size: 1.25em;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.search-results {
+  padding: 80px 10px 20px;
+}
+
+.grid {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
